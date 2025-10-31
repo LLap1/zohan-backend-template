@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 import { Implement, implement, ORPCError } from "@orpc/nest";
-import { root } from "src/orpc/contracts/root";
+import { root } from "src/orpc/contracts/root.contract";
 import { PlanetService } from "./planet.service";
 
 @Controller()
@@ -9,7 +9,7 @@ export class PlanetController {
 
   @Implement(root.planet.list)
   list() {
-    return implement(root.planet.list).handler(({ input }) => {
+    return implement(root.planet.list).handler(() => {
       return this.planetService.list();
     });
   }

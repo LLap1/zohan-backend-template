@@ -1,23 +1,23 @@
 import { NodeSDK } from "@opentelemetry/sdk-node";
 import { ConsoleSpanExporter } from "@opentelemetry/sdk-trace-base";
 import { NestInstrumentation } from "@opentelemetry/instrumentation-nestjs-core";
-
+import { logger } from "../logger/logger";
+import packageJson from "../../../package.json";
 const traceExporter = new ConsoleSpanExporter();
 
 // Create SDK instance with comprehensive configuration
 const node = new NodeSDK({
   traceExporter,
-  instrumentations: [new NestInstrumentation()],
+  serviceName: packageJson.name,
+  instrumentations: [],
 });
 
-// You can also use the shutdown method to gracefully shut down the SDK before process shutdown
-// or on some operating system signal.
 process.on("SIGTERM", () => {
   node
     .shutdown()
     .then(
-      () => console.log("SDK shut down successfully"),
-      (err) => console.log("Error shutting down SDK", err)
+      () => logger.info("shutting down open telemetry node"),
+      (err) => logger.error("Error shutting down open telemetry node", err)
     )
     .finally(() => process.exit(0));
 });

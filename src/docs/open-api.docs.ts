@@ -1,6 +1,6 @@
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
-import { root } from "src/orpc/contracts/root";
+import { root } from "src/orpc/contracts/root.contract";
 import { PlanetSchema } from "src/schemas/planet.schema";
 import packageJson from "../../package.json";
 import {

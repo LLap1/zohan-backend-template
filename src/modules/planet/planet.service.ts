@@ -5,17 +5,19 @@ import {
 } from "src/orpc/contracts/planet/planet.contract.schema";
 import { planets } from "./planet.mock";
 import { Span } from "nestjs-otel";
-
+import { Trace } from "src/lib/open-telemetry/trace";
 export class PlanetService {
-  @Span("planet.list")
+  @Trace("planet.list")
   list(): Planet[] {
     return planets;
   }
-  @Span("planet.find")
+
+  @Trace("planet.find")
   find(id: number): Planet | undefined {
     return planets.find((planet) => planet.id === id);
   }
-  @Span("planet.create")
+
+  @Trace("planet.create")
   create(newPlanet: NewPlanet): Planet {
     const id = planets.length + 1;
     const imageUrl = newPlanet.image
