@@ -1,36 +1,67 @@
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./modules/app/app.module";
-import { apiReference } from "@scalar/nestjs-api-reference";
-import { config } from "./config";
-import { logger } from "./lib/logger/logger";
-import { WinstonModule } from "nest-winston";
+import { AppModule } from "./logic/app.module";
+import apiReference from "@scalar/fastify-api-reference";
 import { generateOpenAPIDocument } from "./docs/open-api.docs";
-import node from "./lib/open-telemetry/node";
-import openApiClient from "./orpc/clients/open-api.client";
+import { root } from "./routing/routers/root";
+import { OpenAPIHandler } from "@orpc/openapi/fastify";
+import { INestApplication } from "@nestjs/common";
+import { RPCHandler } from "@orpc/server/fastify";
+import Fastify from "fastify";
+import { config } from "./config";
 
-async function bootstrap() {
-  node.start();
+export let app: INestApplication;
 
-  const app = await NestFactory.create(AppModule, {
-    bodyParser: false,
-    logger: WinstonModule.createLogger({
-      instance: logger,
-    }),
+NestFactory.create(AppModule).then(async (appInstance) => {
+  app = appInstance;
+  app.init();
+});
+
+const openApiHandler = new OpenAPIHandler(root);
+const rpcHandler = new RPCHandler(root);
+
+const server = Fastify();
+
+server.addContentTypeParser("*", (request, payload, done) => {
+  //using the orpc parsing
+  done(null, undefined);
+});
+
+server.register(apiReference, {
+  routePrefix: "/docs",
+  configuration: {
+    url: "/openapi-spec.json",
+  },
+});
+
+server.get("/openapi-spec.json", async (request, reply) => {
+  return generateOpenAPIDocument();
+});
+
+server.all("/api/*", async (req, reply) => {
+  req.headers["accept-encoding"] = "df";
+  const { matched } = await openApiHandler.handle(req, reply, {
+    context: {
+      headers: req.headers as Record<string, string>,
+    },
+    prefix: "/api",
   });
 
-  const document = await generateOpenAPIDocument();
+  if (!matched) {
+    reply.status(404).send("Not found");
+  }
+});
 
-  app.use(
-    "/docs",
-    apiReference({
-      content: document,
-    })
-  );
-
-  app.listen(config.nest.port).then(async () => {
-    const result = await openApiClient.planet.find({ id: 1 });
-    console.log(result);
+server.all("/rpc/*", async (req, reply) => {
+  const { matched } = await rpcHandler.handle(req, reply, {
+    context: {
+      headers: req.headers as Record<string, string>,
+    },
+    prefix: "/rpc",
   });
-}
 
-bootstrap();
+  if (!matched) {
+    reply.status(404).send("Not found");
+  }
+});
+
+server.listen({ port: config.server.port });

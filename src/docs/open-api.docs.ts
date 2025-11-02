@@ -1,12 +1,12 @@
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
-import { root } from "src/orpc/contracts/root.contract";
-import { PlanetSchema } from "src/schemas/planet.schema";
+import { root } from "src/routing/routers/root";
+import { PlanetSchema } from "src/types/planets.types";
 import packageJson from "../../package.json";
 import {
   NewPlanetSchema,
   UpdatePlanetSchema,
-} from "src/orpc/contracts/planet/planet.contract.schema";
+} from "src/routing/routers/planets/planets.router.schema";
 
 const openapiGenerator = new OpenAPIGenerator({
   schemaConverters: [new ZodToJsonSchemaConverter()],
@@ -19,20 +19,11 @@ export async function generateOpenAPIDocument() {
       version: packageJson.version,
       description: packageJson.description,
     },
-    security: [{ bearerAuth: [] }],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-        },
-      },
-    },
     commonSchemas: {
       NewPlanet: { schema: NewPlanetSchema },
       UpdatePlanet: { schema: UpdatePlanetSchema },
       Planet: { schema: PlanetSchema },
     },
-    servers: [{ url: "http://localhost:3000" }],
+    servers: [{ url: "http://localhost:3000/api" }],
   });
 }

@@ -1,12 +1,13 @@
+import { Context, ContractRouter, os } from "@orpc/server";
 import {
   createPlanet,
   findPlanet,
   listPlanets,
   updatePlanet,
-} from "./planet/planet.contract";
+} from "./planets/planets.router";
 
 export const root = {
-  planet: {
+  planets: {
     list: listPlanets,
     create: createPlanet,
     find: findPlanet,

@@ -1,16 +1,16 @@
 import { z } from "zod";
-import { config as dotenvConfig } from "dotenv";
+import { config as loadDotenv } from "dotenv";
 
-dotenvConfig();
+loadDotenv();
 
 export const configSchema = z.object({
-  nest: z.object({
+  server: z.object({
     port: z.number(),
   }),
 });
 
 const templatedConfig: z.infer<typeof configSchema> = {
-  nest: {
+  server: {
     port: Number(process.env.PORT) || 3000,
   },
 };

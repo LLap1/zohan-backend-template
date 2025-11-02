@@ -1,4 +1,4 @@
-import { Planet } from "src/schemas/planet.schema";
+import { Planet } from "src/types/planets.types";
 
 export const planets: Planet[] = [
   {

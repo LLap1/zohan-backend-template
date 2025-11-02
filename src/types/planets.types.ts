@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { UserSchema } from "./user.schema";
+import { UserSchema } from "./user.types";
 
 export type Planet = z.infer<typeof PlanetSchema>;
 

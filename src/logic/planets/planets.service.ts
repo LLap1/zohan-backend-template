@@ -1,23 +1,19 @@
-import { Planet } from "src/schemas/planet.schema";
+import { Planet } from "src/types/planets.types";
 import {
   NewPlanet,
   UpdatePlanet,
-} from "src/orpc/contracts/planet/planet.contract.schema";
-import { planets } from "./planet.mock";
-import { Span } from "nestjs-otel";
-import { Trace } from "src/lib/open-telemetry/trace";
+} from "src/routing/routers/planets/planets.router.schema";
+import { planets } from "src/logic/planets/planets.mock";
+
 export class PlanetService {
-  @Trace("planet.list")
   list(): Planet[] {
     return planets;
   }
 
-  @Trace("planet.find")
   find(id: number): Planet | undefined {
     return planets.find((planet) => planet.id === id);
   }
 
-  @Trace("planet.create")
   create(newPlanet: NewPlanet): Planet {
     const id = planets.length + 1;
     const imageUrl = newPlanet.image
@@ -35,7 +31,7 @@ export class PlanetService {
     planets.push(planet);
     return planet;
   }
-  @Span("planet.update")
+
   update(planet: UpdatePlanet): Planet {
     const index = planets.findIndex((p) => p.id === planet.id);
 
