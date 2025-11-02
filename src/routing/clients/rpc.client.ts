@@ -1,7 +1,7 @@
 import { createORPCClient, onError } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { RouterClient } from "@orpc/server";
-import { root } from "src/routing/routers/root";
+import { root } from "src/routing/routers/root.router";
 
 const link = new RPCLink({
   url: "http://localhost:3000/rpc",

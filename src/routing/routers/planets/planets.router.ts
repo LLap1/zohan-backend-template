@@ -5,7 +5,7 @@ import {
   UpdatePlanetSchema,
 } from "src/routing/routers/planets/planets.router.schema";
 import { os } from "@orpc/server";
-import { app } from "src/main";
+import { nest } from "src/main";
 import { PlanetService } from "src/logic/planets/planets.service";
 
 const ERROR_MAP = {
@@ -27,7 +27,7 @@ export const listPlanets = base
   })
   .output(z.array(PlanetSchema))
   .handler(async () => {
-    return app.get(PlanetService).list();
+    return nest.get(PlanetService).list();
   });
 
 export const createPlanet = base
@@ -40,7 +40,7 @@ export const createPlanet = base
   .input(NewPlanetSchema)
   .output(PlanetSchema)
   .handler(async ({ input }) => {
-    return app.get(PlanetService).create(input);
+    return nest.get(PlanetService).create(input);
   });
 
 export const findPlanet = base
@@ -54,7 +54,7 @@ export const findPlanet = base
   .input(PlanetSchema.pick({ id: true }))
   .output(PlanetSchema)
   .handler(async ({ input, errors }) => {
-    const planet = app.get(PlanetService).find(input.id);
+    const planet = nest.get(PlanetService).find(input.id);
     if (!planet) {
       throw errors.NOT_FOUND;
     }
@@ -72,7 +72,7 @@ export const updatePlanet = base
   .input(UpdatePlanetSchema)
   .output(PlanetSchema)
   .handler(async ({ input, errors }) => {
-    const planet = app.get(PlanetService).update(input);
+    const planet = nest.get(PlanetService).update(input);
     if (!planet) {
       throw errors.NOT_FOUND;
     }
