@@ -45,9 +45,6 @@ importers:
       '@orpc/contract':
         specifier: next
         version: 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/nest':
-        specifier: next
-        version: 0.0.0-next.440b07e(@nestjs/common@11.1.8(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.8)(@opentelemetry/api@1.9.0)(express@5.1.0)(fastify@5.6.1)(rxjs@7.8.2)
       '@orpc/openapi':
         specifier: next
         version: 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)(fastify@5.6.1)
@@ -63,18 +60,9 @@ importers:
       '@types/node':
         specifier: ^22.15.30
         version: 22.18.13
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
-      rxjs:
-        specifier: ^7.8.1
-        version: 7.8.2
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.13.21)(@types/node@22.18.13)(typescript@5.9.3)
-      tsconfig-paths:
-        specifier: ^4.2.0
-        version: 4.2.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -685,20 +673,6 @@ packages:
 
   '@orpc/json-schema@0.0.0-next.440b07e':
     resolution: {integrity: sha512-MeFx4j1fh6cGDbWndymZsDUHVo9Ugm3yQiquVIC4K+KHZqAyuuTDv0gEQyc8aLwaIdAs/R9O+zQM4fkATWztCQ==}
-
-  '@orpc/nest@0.0.0-next.440b07e':
-    resolution: {integrity: sha512-OWXyEoTrLO6EwQkZkVOt2RFnWmwRiPaMRSXpT3WkDKt6yNKu13qQm43UjWA6ml5R0kgjZ5yk/IRcdheaRDXUjA==}
-    peerDependencies:
-      '@nestjs/common': '>=11.0.0'
-      '@nestjs/core': '>=11.0.0'
-      express: '>=5.0.0'
-      fastify: '>=5.0.0'
-      rxjs: '>=7.0.0'
-    peerDependenciesMeta:
-      express:
-        optional: true
-      fastify:
-        optional: true
 
   '@orpc/openapi-client@0.0.0-next.440b07e':
     resolution: {integrity: sha512-FW9giPcpG+t0UOYJDiMlVJpFKwt/kd6HAuiURSmyhaNXE+0dDKh9a7d6c7RIw/4SaQ2jaJBVDcLis9xkKurM7Q==}
@@ -3822,28 +3796,6 @@ snapshots:
       - '@opentelemetry/api'
       - crossws
       - fastify
-      - ws
-
-  '@orpc/nest@0.0.0-next.440b07e(@nestjs/common@11.1.8(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.8)(@opentelemetry/api@1.9.0)(express@5.1.0)(fastify@5.6.1)(rxjs@7.8.2)':
-    dependencies:
-      '@nestjs/common': 11.1.8(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.8(@nestjs/common@11.1.8(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.8)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@orpc/client': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/contract': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/openapi': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)(fastify@5.6.1)
-      '@orpc/openapi-client': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/server': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)(fastify@5.6.1)
-      '@orpc/shared': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/standard-server': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      '@orpc/standard-server-fastify': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)(fastify@5.6.1)
-      '@orpc/standard-server-node': 0.0.0-next.440b07e(@opentelemetry/api@1.9.0)
-      rxjs: 7.8.2
-    optionalDependencies:
-      express: 5.1.0
-      fastify: 5.6.1
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - crossws
       - ws
 
   '@orpc/openapi-client@0.0.0-next.440b07e(@opentelemetry/api@1.9.0)':

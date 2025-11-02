@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "preview": "nest build && unbuild --stub && node dist/main.mjs",
-    "start:dev": "nest start --watch",
+    "start:dev": "bun --watch src/main.ts",
     "type:check": "tsc --noEmit"
   },
   "devDependencies": {
@@ -15,16 +15,12 @@
     "@nestjs/schematics": "^11.0.9",
     "@orpc/client": "^1.10.2",
     "@orpc/contract": "next",
-    "@orpc/nest": "next",
     "@orpc/openapi": "next",
     "@orpc/openapi-client": "next",
     "@orpc/tanstack-query": "next",
     "@orpc/zod": "next",
     "@types/node": "^22.15.30",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
     "zod": "^4.1.12"
