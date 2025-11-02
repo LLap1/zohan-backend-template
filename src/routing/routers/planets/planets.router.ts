@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { PlanetSchema } from "src/types/planets.types";
+import { PlanetSchema } from "src/models/planets.model";
 import {
   NewPlanetSchema,
   UpdatePlanetSchema,

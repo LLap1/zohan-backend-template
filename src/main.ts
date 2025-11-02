@@ -63,4 +63,6 @@ server.all("/rpc/*", async (req, reply) => {
   }
 });
 
-server.listen({ port: config.server.port });
+server.listen({ port: config.server.port }).then(() => {
+  console.log(`Server is running on port ${config.server.port}`);
+});

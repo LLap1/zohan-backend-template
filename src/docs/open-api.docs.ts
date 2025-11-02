@@ -1,7 +1,7 @@
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
 import { root } from "src/routing/routers/root.router";
-import { PlanetSchema } from "src/types/planets.types";
+import { PlanetSchema } from "src/models/planets.model";
 import packageJson from "../../package.json";
 import {
   NewPlanetSchema,

@@ -1,4 +1,4 @@
-import { Planet } from "src/types/planets.types";
+import { Planet } from "src/models/planets.model";
 import {
   NewPlanet,
   UpdatePlanet,

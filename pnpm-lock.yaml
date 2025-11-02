@@ -21,7 +21,7 @@ importers:
         specifier: ^1.10.2
         version: 1.10.3(fastify@5.6.1)
       '@scalar/fastify-api-reference':
-        specifier: ^1.38.1
+        specifier: ^1.25.95
         version: 1.38.1
       dotenv:
         specifier: ^17.2.3
@@ -54,9 +54,6 @@ importers:
       '@orpc/openapi-client':
         specifier: ^1.10.2
         version: 1.10.3
-      '@orpc/tanstack-query':
-        specifier: ^1.10.2
-        version: 1.10.3(@orpc/client@1.10.3)(@tanstack/query-core@5.90.6)
       '@orpc/zod':
         specifier: ^1.10.2
         version: 1.10.3(@orpc/contract@1.10.3)(@orpc/server@1.10.3(fastify@5.6.1))(fastify@5.6.1)(zod@4.1.12)
@@ -606,12 +603,6 @@ packages:
   '@orpc/standard-server@1.10.3':
     resolution: {integrity: sha512-4ke7cyTkIntFf9PL+Snyo/ZhFn2mUbhmw7xTCQtF1I3yP7SZr21ZGfa6UpJcKMR+le5cVRCV/pjTjeXsDm1glg==}
 
-  '@orpc/tanstack-query@1.10.3':
-    resolution: {integrity: sha512-2sxcjgLSyhmEhuu8QKUT0s5cKzmUIvrRmGpToNWmKuQdcr9Ah+ANETfCsKBR4DlAk6UdGrngZ5nfOyt8CTvV1g==}
-    peerDependencies:
-      '@orpc/client': 1.10.3
-      '@tanstack/query-core': '>=5.80.2'
-
   '@orpc/zod@1.10.3':
     resolution: {integrity: sha512-3GU0KceoSOyEVe7UwNu1UV0/6a1CacaayxU2flJRUs3NqSFQD0oI/2dFAExAuLVFsdLjD9yWHvxVs+00Njlr/g==}
     peerDependencies:
@@ -820,9 +811,6 @@ packages:
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
-
-  '@tanstack/query-core@5.90.6':
-    resolution: {integrity: sha512-AnZSLF26R8uX+tqb/ivdrwbVdGemdEDm1Q19qM6pry6eOZ6bEYiY7mWhzXT1YDIPTNEVcZ5kYP9nWjoxDLiIVw==}
 
   '@tokenizer/inflate@0.2.7':
     resolution: {integrity: sha512-MADQgmZT1eKjp06jpI2yozxaU9uVs4GzzgSL+uEq7bVcJ9V1ZXQkeGNql1fsSI0gMy1vhvNTNbUqrx+pZfJVmg==}
@@ -3257,14 +3245,6 @@ snapshots:
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/tanstack-query@1.10.3(@orpc/client@1.10.3)(@tanstack/query-core@5.90.6)':
-    dependencies:
-      '@orpc/client': 1.10.3
-      '@orpc/shared': 1.10.3
-      '@tanstack/query-core': 5.90.6
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-
   '@orpc/zod@1.10.3(@orpc/contract@1.10.3)(@orpc/server@1.10.3(fastify@5.6.1))(fastify@5.6.1)(zod@4.1.12)':
     dependencies:
       '@orpc/contract': 1.10.3
@@ -3443,8 +3423,6 @@ snapshots:
       zod: 4.1.11
 
   '@standard-schema/spec@1.0.0': {}
-
-  '@tanstack/query-core@5.90.6': {}
 
   '@tokenizer/inflate@0.2.7':
     dependencies:
