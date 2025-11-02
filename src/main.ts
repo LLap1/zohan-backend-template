@@ -1,13 +1,13 @@
-import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./logic/app.module";
 import apiReference from "@scalar/fastify-api-reference";
 import { generateOpenAPIDocument } from "./docs/open-api.docs";
 import { root } from "./routing/routers/root.router";
-import { OpenAPIHandler } from "@orpc/openapi/fastify";
-import { INestApplication } from "@nestjs/common";
-import { RPCHandler } from "@orpc/server/fastify";
 import Fastify from "fastify";
 import { config } from "./config";
+import { NestFactory } from "@nestjs/core";
+import { OpenAPIHandler } from "@orpc/openapi/fastify";
+import { RPCHandler } from "@orpc/server/fastify";
+import { INestApplication } from "@nestjs/common";
 
 export let nest: INestApplication;
 
